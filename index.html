@@ -8,12 +8,20 @@
 <link rel="apple-touch-icon" href="./icon-192.png">
 <title>Vertrags- und Abo-Planer</title>
 <style>
-:root{color-scheme:light;--ink:#192d27;--muted:#52665e;--green:#12604a;--line:#dce6e0;--mint:#e7f3ec;--paper:#f4f7f5;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #408b71;outline-offset:3px}h1,h2,h3,p{margin:0}.wrap{max-width:54rem;margin:auto;padding-inline:clamp(1rem,4vw,2rem)}header{background:#123329;color:white;padding:clamp(1.5rem,5vw,3rem) 0 2rem}.hero{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}h1{font-size:clamp(1.8rem,5vw,3.1rem);letter-spacing:-.045em;line-height:1.06}.primary{background:#12604a;color:white;border:0;border-radius:.65rem;padding:.7rem 1rem;font-weight:700;min-height:44px}.hero .primary{background:#bce8d2;color:#123329}nav{background:white;border-bottom:1px solid var(--line)}.tabs{display:grid;grid-template-columns:repeat(3,1fr)}.tabs button{min-height:3.6rem;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:650;padding:.5rem .2rem}.tabs button[aria-selected=true]{background:#f0f8f3;border-bottom-color:var(--green);color:#124a39}.tabs small{display:block;font-size:.8rem;font-weight:500}main{padding-block:1.7rem 3rem}.section-head{display:flex;justify-content:space-between;gap:.4rem 1rem;align-items:baseline;flex-wrap:wrap;margin-bottom:1.15rem}h2{font-size:clamp(1.3rem,4vw,1.7rem);letter-spacing:-.025em}.sub{color:var(--muted);font-size:.9rem}.cards{display:grid;gap:.75rem}.card,.panel{background:white;border:1px solid var(--line);border-radius:.85rem}.card{overflow:hidden;border-left:4px solid #87b69e}.card[data-soon=true]{border-left-color:#c37b37}.card summary{display:block;list-style:none;padding:1rem 1.1rem;cursor:pointer}.card summary::-webkit-details-marker{display:none}.card summary:hover{background:#fafcfb}.row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}.card-title{font-size:1.08rem;font-weight:800;color:var(--green);overflow-wrap:anywhere}.amount{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:750}.facts{display:flex;gap:.35rem .9rem;flex-wrap:wrap;margin-top:.5rem;color:var(--muted);font-size:.9rem}.deadline{color:#83501f;font-weight:700}.detail{border-top:1px solid var(--line);padding:1rem 1.1rem;display:grid;gap:.5rem}.detail .secondary{justify-self:start}.secondary{min-height:44px;padding:.55rem .75rem;border:1px solid var(--line);border-radius:.55rem;background:white;color:var(--green);font-weight:700}.group{margin:1.1rem 0 .55rem;font-size:.95rem;color:var(--green)}.panel{padding:.15rem 1rem;margin-bottom:1rem}.line{padding:.8rem 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.line:last-child{border:0}.line small{display:block;color:var(--muted)}.totals{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.2rem}.total{padding:1rem;background:var(--mint);border-radius:.85rem}.total strong{display:block;font-size:clamp(1.2rem,4vw,1.8rem);margin-top:.25rem;color:#154e3d}.analysis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}.empty{padding:1rem}.editor{border:1px solid var(--line);border-radius:1rem;padding:1.2rem;width:min(32rem,calc(100% - 2rem));color:var(--ink)}.editor::backdrop{background:#142c24a0}.editor form{display:grid;gap:.8rem}.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));gap:.75rem}.editor label{display:grid;gap:.28rem;font-size:.9rem;font-weight:650}.editor input,.editor select{width:100%;min-height:44px;border:1px solid #a8bbb0;border-radius:.45rem;background:white;color:var(--ink);padding:.5rem}.actions{display:flex;justify-content:flex-end;gap:.5rem;flex-wrap:wrap}.error{color:#9b321d}@media(max-width:420px){.card summary{padding:.85rem .75rem}.card-title{font-size:1rem}.row{gap:.4rem}.tabs button{font-size:.9rem}}
+:root{color-scheme:light;--ink:#192d27;--muted:#52665e;--green:#12604a;--line:#dce6e0;--mint:#e7f3ec;--paper:#f4f7f5;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #408b71;outline-offset:3px}h1,h2,h3,p{margin:0}.wrap{max-width:54rem;margin:auto;padding-inline:clamp(1rem,4vw,2rem)}header{background:#123329;color:white;padding:clamp(1.5rem,5vw,3rem) 0 2rem}.hero{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}h1{font-size:clamp(1.8rem,5vw,3.1rem);letter-spacing:-.045em;line-height:1.06}.primary{background:#12604a;color:white;border:0;border-radius:.65rem;padding:.7rem 1rem;font-weight:700;min-height:44px}.hero .primary{background:#bce8d2;color:#123329}nav{background:white;border-bottom:1px solid var(--line)}.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.tabs button{min-height:3.6rem;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:650;padding:.5rem .2rem}.tabs button[aria-selected=true]{background:#f0f8f3;border-bottom-color:var(--green);color:#124a39}.tabs small{display:block;font-size:.8rem;font-weight:500}main{padding-block:1.7rem 3rem}.section-head{display:flex;justify-content:space-between;gap:.4rem 1rem;align-items:baseline;flex-wrap:wrap;margin-bottom:1.15rem}h2{font-size:clamp(1.3rem,4vw,1.7rem);letter-spacing:-.025em}.sub{color:var(--muted);font-size:.9rem}.cards{display:grid;gap:.75rem}.card,.panel{background:white;border:1px solid var(--line);border-radius:.85rem}.card{overflow:hidden;border-left:4px solid #87b69e}.card[data-soon=true]{border-left-color:#c37b37}.card summary{display:block;list-style:none;padding:1rem 1.1rem;cursor:pointer}.card summary::-webkit-details-marker{display:none}.card summary:hover{background:#fafcfb}.row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}.card-title{font-size:1.08rem;font-weight:800;color:var(--green);overflow-wrap:anywhere}.amount{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:750}.facts{display:flex;gap:.35rem .9rem;flex-wrap:wrap;margin-top:.5rem;color:var(--muted);font-size:.9rem}.deadline{color:#83501f;font-weight:700}.detail{border-top:1px solid var(--line);padding:1rem 1.1rem;display:grid;gap:.5rem}.detail .secondary{justify-self:start}.secondary{min-height:44px;padding:.55rem .75rem;border:1px solid var(--line);border-radius:.55rem;background:white;color:var(--green);font-weight:700}.group{margin:1.1rem 0 .55rem;font-size:.95rem;color:var(--green)}.panel{padding:.15rem 1rem;margin-bottom:1rem}.line{padding:.8rem 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.line:last-child{border:0}.line small{display:block;color:var(--muted)}.totals{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.2rem}.total{padding:1rem;background:var(--mint);border-radius:.85rem}.total strong{display:block;font-size:clamp(1.2rem,4vw,1.8rem);margin-top:.25rem;color:#154e3d}.analysis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}.empty{padding:1rem}.editor{border:1px solid var(--line);border-radius:1rem;padding:1.2rem;width:min(32rem,calc(100% - 2rem));color:var(--ink)}.editor::backdrop{background:#142c24a0}.editor form{display:grid;gap:.8rem}.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));gap:.75rem}.editor label{display:grid;gap:.28rem;font-size:.9rem;font-weight:650}.editor input,.editor select{width:100%;min-height:44px;border:1px solid #a8bbb0;border-radius:.45rem;background:white;color:var(--ink);padding:.5rem}.actions{display:flex;justify-content:flex-end;gap:.5rem;flex-wrap:wrap}.error{color:#9b321d}@media(max-width:420px){.card summary{padding:.85rem .75rem}.card-title{font-size:1rem}.row{gap:.4rem}.tabs button{font-size:.9rem}}
 .reminder-bar{display:flex;align-items:center;justify-content:space-between;gap:.65rem 1rem;flex-wrap:wrap;padding:.75rem .9rem;background:#e7f3ec;border:1px solid #cddfd4;border-radius:.75rem;margin-bottom:1rem}.reminder-bar .secondary{min-height:44px}.detail-actions{display:flex;gap:.5rem;flex-wrap:wrap}.setting-note{margin:-.45rem 0 1rem}.reminder-state{color:#52665e;font-weight:650}
 .data-tools{display:flex;flex-wrap:wrap;gap:.55rem;padding:0 0 max(1.5rem,env(safe-area-inset-bottom))}.data-tools p{flex-basis:100%}.danger{color:#96391f}.editor{max-height:calc(100dvh - 2rem)}
 .category-list{display:grid;gap:.5rem;max-height:35vh;overflow:auto;margin:.75rem 0}.category-row{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;padding:.45rem 0;border-bottom:1px solid var(--line)}.category-row span{flex:1 1 7rem;overflow-wrap:anywhere}.category-controls{display:flex;gap:.4rem;flex-wrap:wrap;margin:.75rem 0}.category-controls input{flex:1 1 10rem;width:auto}
 [hidden]{display:none!important}
 .monthly-accounts{padding:0 .9rem;background:#ecf4f1}.payment-account{display:block;color:var(--muted);font-size:.85rem;margin-top:.15rem}
+.settings-panel{padding-block:1.7rem 3rem}.settings-panel h2{margin-bottom:1.15rem}
+.chart-grid{display:grid;grid-template-columns:repeat(var(--chart-columns),minmax(0,1fr));gap:.75rem;margin:1rem 0 1.5rem}
+.account-chart{padding:.85rem;min-width:0}.chart-title{margin:0;font-size:1rem;overflow-wrap:anywhere}
+.chart-year{margin:.3rem 0 .8rem;color:var(--muted);font-size:.875rem}.chart-year strong{display:block;margin-top:.1rem;color:#154e3d;font-size:1.25rem}
+.chart-bars{display:grid;gap:.32rem;margin:0;padding:0;list-style:none}
+.chart-bar{border-radius:.35rem;background:linear-gradient(90deg,#add9c0 var(--bar-width),#eef4f0 var(--bar-width));padding:.3rem .45rem;font-size:.86rem;min-height:1.9rem;align-items:center}
+@media(max-width:45rem){.chart-grid{grid-template-columns:repeat(min(var(--chart-columns),2),minmax(0,1fr))}}
+@media(max-width:29rem){.chart-grid{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
@@ -22,21 +30,24 @@
 <button role="tab" id="tab-terms" aria-controls="view" aria-selected="true" data-view="terms">Übersicht</button>
 <button role="tab" id="tab-payments" aria-controls="view" aria-selected="false" tabindex="-1" data-view="payments">Zahlungsplan</button>
 <button role="tab" id="tab-costs" aria-controls="view" aria-selected="false" tabindex="-1" data-view="costs">Auswertung<small>Kosten</small></button>
+<button role="tab" id="tab-settings" aria-controls="settings" aria-selected="false" tabindex="-1" data-view="settings">Einstellungen</button>
 </div></nav>
-<div class="wrap"><main id="view" role="tabpanel" aria-labelledby="tab-terms" tabindex="0"></main><footer class="data-tools">
+<div class="wrap"><main id="view" role="tabpanel" aria-labelledby="tab-terms" tabindex="0"></main><section id="settings" class="settings-panel" role="tabpanel" aria-labelledby="tab-settings" tabindex="0" hidden>
+<h2>Einstellungen</h2>
+<div class="data-tools">
 <button class="secondary" data-manage="account" type="button">Konten verwalten</button>
 <button class="secondary" data-manage="category" type="button">Kategorien verwalten</button>
 <button class="secondary" id="export" type="button">JSON-Sicherung erstellen</button>
 <button class="secondary" id="import" type="button">Sicherung wiederherstellen</button>
 <input type="file" id="backup-file" accept=".json,application/json" hidden>
-<p id="data-status" class="sub" role="status"></p>
-</footer></div>
+</div></section>
+<p id="data-status" class="sub" role="status"></p></div>
 <dialog class="editor" id="editor" aria-labelledby="editor-title"><form id="entry-form">
 <h2 id="editor-title">Neuer Eintrag</h2>
 <div class="fields">
 <label>Name<input name="name" maxlength="90" required></label>
-<div><label>Kategorie<select name="category" required></select></label><button class="secondary" data-manage="category" type="button">Kategorien verwalten</button></div>
-<div><label>Bank / Konto<select name="account"></select></label><button class="secondary" data-manage="account" type="button">Konten verwalten</button></div>
+<label>Kategorie<select name="category" required></select></label>
+<label>Bank / Konto<select name="account"></select></label>
 <label>Betrag in Euro<input name="amount" type="number" min="0" max="10000000" step="0.01" required></label>
 <label>Zahlungsintervall<select name="months"><option value="1">Monatlich</option><option value="3">Vierteljährlich</option><option value="6">Halbjährlich</option><option value="12">Jährlich</option></select></label>
 <label>Erste oder nächste Abbuchung<input name="next" type="date" min="1900-01-01" max="2100-12-31" required></label>
@@ -85,6 +96,7 @@ let accounts = mergeNames(saved?.accounts,entries,'account');
 let iconEnabled = saved?.iconEnabled === true;
 let reminderMessage = '';
 const view = document.querySelector('#view');
+const settings = document.querySelector('#settings');
 const tabs = [...document.querySelectorAll('[role=tab]')];
 const editor = document.querySelector('#editor');
 const form = document.querySelector('#entry-form');
@@ -109,6 +121,7 @@ const exportButton = document.querySelector('#export');
 const euro = new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'});
 const dates = new Intl.DateTimeFormat('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',timeZone:'UTC'});
 const months = new Intl.DateTimeFormat('de-DE',{month:'long',year:'numeric',timeZone:'UTC'});
+const chartMonths = new Intl.DateTimeFormat('de-DE',{month:'short',year:'2-digit',timeZone:'UTC'});
 const parse = value => new Date(value+'T00:00:00Z');
 const date = value => dates.format(parse(value));
 const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -278,11 +291,40 @@ function costGroup(title, groups) {
   return '<section><h3 class="group">'+title+'</h3><div class="panel">'+groups.map(([label,yearly]) => '<div class="row line"><span>'+esc(label)+'</span><span class="amount">'+euro.format(yearly/100)+'</span></div>').join('')+'</div></section>';
 }
 
+function renderAccountCharts(first) {
+  const dates = Array.from({length:12},(_,index) => occurrence(first,index));
+  const monthIndex = new Map(dates.map((day,index) => [day.slice(0,7),index]));
+  const totals = new Map(accounts.map(account => [account,Array(12).fill(0)]));
+  for (const {day,entry} of schedule(first,occurrence(first,12))) {
+    const account = entry.account || '';
+    if (!totals.has(account)) totals.set(account,Array(12).fill(0));
+    totals.get(account)[monthIndex.get(day.slice(0,7))] += Math.round(entry.amount*100);
+  }
+  if (!totals.size) return '';
+  let max = 1;
+  for (const values of totals.values()) max = Math.max(max,...values);
+  const chart = ([account,values]) => {
+    const year = values.reduce((sum,cents) => sum+cents,0);
+    const bars = values.map((cents,index) =>
+      '<li class="row chart-bar" style="--bar-width:'+(cents/max*100)+'%"><span>'+
+      chartMonths.format(parse(dates[index]))+'</span><span class="amount">'+euro.format(cents/100)+'</span></li>'
+    ).join('');
+    return '<section class="panel account-chart"><h4 class="chart-title">'+esc(account||'Ohne Konto')+
+      '</h4><p class="chart-year">Jahressumme<strong>'+euro.format(year/100)+
+      '</strong></p><ul class="chart-bars">'+bars+'</ul></section>';
+  };
+  const ordered = [...totals].sort(([a],[b]) => Number(!a)-Number(!b));
+  const range = months.format(parse(first))+' bis '+months.format(parse(dates[11]));
+  return '<section><h3 class="group">Monatskosten je Konto</h3><p class="sub">'+range+
+    '</p><div class="chart-grid" style="--chart-columns:'+Math.min(totals.size,3)+'">'+ordered.map(chart).join('')+'</div></section>';
+}
+
 function renderCosts() {
   if (!entries.length) return heading('Auswertung','')+'<p class="sub empty">Die Auswertung erscheint nach dem ersten Eintrag.</p>';
   const categories = summarize(e => e.category);
   const yearly = categories.reduce((sum,[,amount]) => sum+amount,0);
-  return heading('Auswertung','Hochrechnung aus den Zahlungsintervallen')+
+  return heading('Auswertung','')+renderAccountCharts(todayISO().slice(0,7)+'-01')+
+    '<h3 class="group">Hochrechnung aus den Zahlungsintervallen</h3>'+
     '<div class="totals"><div class="total"><span>Pro Monat im Schnitt</span><strong>'+euro.format(yearly/1200)+'</strong></div><div class="total"><span>Gesamt pro Jahr</span><strong>'+euro.format(yearly/100)+'</strong></div></div>'+
     '<div class="analysis-grid">'+costGroup('Nach Kategorie · pro Jahr',categories)+costGroup('Nach Zahlungsintervall · pro Jahr',summarize(e => intervals.get(e.months)))+'</div>';
 }
@@ -294,8 +336,13 @@ function activate(tab) {
     button.setAttribute('aria-selected',selected);
     button.tabIndex = selected ? 0 : -1;
   });
-  view.setAttribute('aria-labelledby',tab.id);
-  view.innerHTML = {terms:renderTerms,payments:renderPayments,costs:renderCosts}[active]();
+  const showSettings = active === 'settings';
+  settings.hidden = !showSettings;
+  view.hidden = showSettings;
+  if (!showSettings) {
+    view.setAttribute('aria-labelledby',tab.id);
+    view.innerHTML = {terms:renderTerms,payments:renderPayments,costs:renderCosts}[active]();
+  }
   syncBadge();
 }
 
