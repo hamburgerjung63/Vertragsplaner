@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123329">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<title>Vertrags- und Abo-Planer</title>
+<style>
+:root{color-scheme:light;--ink:#192d27;--muted:#52665e;--green:#12604a;--line:#dce6e0;--mint:#e7f3ec;--paper:#f4f7f5;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #408b71;outline-offset:3px}h1,h2,h3,p{margin:0}.wrap{max-width:54rem;margin:auto;padding-inline:clamp(1rem,4vw,2rem)}header{background:#123329;color:white;padding:clamp(1.5rem,5vw,3rem) 0 2rem}.hero{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}h1{font-size:clamp(1.8rem,5vw,3.1rem);letter-spacing:-.045em;line-height:1.06}.primary{background:#12604a;color:white;border:0;border-radius:.65rem;padding:.7rem 1rem;font-weight:700;min-height:44px}.hero .primary{background:#bce8d2;color:#123329}nav{background:white;border-bottom:1px solid var(--line)}.tabs{display:grid;grid-template-columns:repeat(3,1fr)}.tabs button{min-height:3.6rem;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:650;padding:.5rem .2rem}.tabs button[aria-selected=true]{background:#f0f8f3;border-bottom-color:var(--green);color:#124a39}.tabs small{display:block;font-size:.8rem;font-weight:500}main{padding-block:1.7rem 3rem}.section-head{display:flex;justify-content:space-between;gap:.4rem 1rem;align-items:baseline;flex-wrap:wrap;margin-bottom:1.15rem}h2{font-size:clamp(1.3rem,4vw,1.7rem);letter-spacing:-.025em}.sub{color:var(--muted);font-size:.9rem}.cards{display:grid;gap:.75rem}.card,.panel{background:white;border:1px solid var(--line);border-radius:.85rem}.card{overflow:hidden;border-left:4px solid #87b69e}.card[data-soon=true]{border-left-color:#c37b37}.card summary{display:block;list-style:none;padding:1rem 1.1rem;cursor:pointer}.card summary::-webkit-details-marker{display:none}.card summary:hover{background:#fafcfb}.row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}.card-title{font-size:1.08rem;font-weight:800;color:var(--green);overflow-wrap:anywhere}.amount{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:750}.facts{display:flex;gap:.35rem .9rem;flex-wrap:wrap;margin-top:.5rem;color:var(--muted);font-size:.9rem}.deadline{color:#83501f;font-weight:700}.detail{border-top:1px solid var(--line);padding:1rem 1.1rem;display:grid;gap:.5rem}.detail .secondary{justify-self:start}.secondary{min-height:44px;padding:.55rem .75rem;border:1px solid var(--line);border-radius:.55rem;background:white;color:var(--green);font-weight:700}.group{margin:1.1rem 0 .55rem;font-size:.95rem;color:var(--green)}.panel{padding:.15rem 1rem;margin-bottom:1rem}.line{padding:.8rem 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.line:last-child{border:0}.line small{display:block;color:var(--muted)}.totals{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.2rem}.total{padding:1rem;background:var(--mint);border-radius:.85rem}.total strong{display:block;font-size:clamp(1.2rem,4vw,1.8rem);margin-top:.25rem;color:#154e3d}.analysis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}.empty{padding:1rem}.editor{border:1px solid var(--line);border-radius:1rem;padding:1.2rem;width:min(32rem,calc(100% - 2rem));color:var(--ink)}.editor::backdrop{background:#142c24a0}.editor form{display:grid;gap:.8rem}.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));gap:.75rem}.editor label{display:grid;gap:.28rem;font-size:.9rem;font-weight:650}.editor input,.editor select{width:100%;min-height:44px;border:1px solid #a8bbb0;border-radius:.45rem;background:white;color:var(--ink);padding:.5rem}.actions{display:flex;justify-content:flex-end;gap:.5rem;flex-wrap:wrap}.error{color:#9b321d}@media(max-width:420px){.card summary{padding:.85rem .75rem}.card-title{font-size:1rem}.row{gap:.4rem}.tabs button{font-size:.9rem}}
+.reminder-bar{display:flex;align-items:center;justify-content:space-between;gap:.65rem 1rem;flex-wrap:wrap;padding:.75rem .9rem;background:#e7f3ec;border:1px solid #cddfd4;border-radius:.75rem;margin-bottom:1rem}.reminder-bar .secondary{min-height:44px}.detail-actions{display:flex;gap:.5rem;flex-wrap:wrap}.setting-note{margin:-.45rem 0 1rem}.reminder-state{color:#52665e;font-weight:650}
+.data-tools{display:flex;flex-wrap:wrap;gap:.55rem;padding:0 0 max(1.5rem,env(safe-area-inset-bottom))}.data-tools p{flex-basis:100%}.danger{color:#96391f}.editor{max-height:calc(100dvh - 2rem)}
+</style>
+</head>
+<body>
+<header><div class="wrap hero"><div><h1>Vertrags- und Abo-Planer</h1></div><button class="primary" id="add">+ Neuer Eintrag</button></div></header>
+<nav aria-label="Ansichten"><div class="wrap tabs" role="tablist">
+<button role="tab" id="tab-terms" aria-controls="view" aria-selected="true" data-view="terms">Übersicht</button>
+<button role="tab" id="tab-payments" aria-controls="view" aria-selected="false" tabindex="-1" data-view="payments">Zahlungsplan</button>
+<button role="tab" id="tab-costs" aria-controls="view" aria-selected="false" tabindex="-1" data-view="costs">Auswertung<small>Kosten</small></button>
+</div></nav>
+<div class="wrap"><main id="view" role="tabpanel" aria-labelledby="tab-terms" tabindex="0"></main><footer class="data-tools">
+<button class="secondary" id="export" type="button">JSON-Sicherung erstellen</button>
+<button class="secondary" id="import" type="button">Sicherung wiederherstellen</button>
+<input type="file" id="backup-file" accept=".json,application/json" hidden>
+<p id="data-status" class="sub" role="status"></p>
+</footer></div>
+<dialog class="editor" id="editor" aria-labelledby="editor-title"><form id="entry-form">
+<h2 id="editor-title">Neuer Eintrag</h2>
+<div class="fields">
+<label>Name<input name="name" maxlength="90" required></label>
+<label>Kategorie<input name="category" maxlength="50" required></label>
+<label>Betrag in Euro<input name="amount" type="number" min="0" max="10000000" step="0.01" required></label>
+<label>Zahlungsintervall<select name="months"><option value="1">Monatlich</option><option value="3">Vierteljährlich</option><option value="6">Halbjährlich</option><option value="12">Jährlich</option></select></label>
+<label>Erste oder nächste Abbuchung<input name="next" type="date" min="1900-01-01" max="2100-12-31" required></label>
+<label>Laufzeit bis<input name="end" type="date" min="1900-01-01" max="2100-12-31"></label>
+<label>Kündigungsfrist<input name="notice" maxlength="50" placeholder="z. B. 1 Monat"></label>
+<label>Kündigen bis (Datum)<input name="deadline" type="date" min="1900-01-01" max="2100-12-31"></label>
+</div>
+<p class="sub">Das Datum unter „Kündigen bis“ steuert den Hinweis. Bei einer Verlängerung kannst du dort die neue Frist eintragen.</p><p class="error" role="alert" id="form-error"></p>
+<div class="actions"><button type="button" class="secondary danger" id="delete" hidden>Löschen</button><button type="button" class="secondary" id="cancel">Abbrechen</button><button class="primary">Speichern</button></div>
+</form></dialog>
+<script>
+const intervals = new Map([[1,'Monatlich'],[3,'Vierteljährlich'],[6,'Halbjährlich'],[12,'Jährlich']]);
+const scope = new URL('./',location.href).pathname;
+const storageKey = 'vertragsplaner-v2:'+scope;
+const warningDays = 45;
+let saved;
+try {
+  saved = JSON.parse(localStorage.getItem(storageKey));
+} catch {
+  saved = null;
+}
+let entries = Array.isArray(saved?.entries) ? saved.entries : [];
+let iconEnabled = saved?.iconEnabled === true;
+let reminderMessage = '';
+const view = document.querySelector('#view');
+const tabs = [...document.querySelectorAll('[role=tab]')];
+const editor = document.querySelector('#editor');
+const form = document.querySelector('#entry-form');
+const error = document.querySelector('#form-error');
+const deleteButton = document.querySelector('#delete');
+const backupFile = document.querySelector('#backup-file');
+const dataStatus = document.querySelector('#data-status');
+const exportButton = document.querySelector('#export');
+const euro = new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'});
+const dates = new Intl.DateTimeFormat('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',timeZone:'UTC'});
+const months = new Intl.DateTimeFormat('de-DE',{month:'long',year:'numeric',timeZone:'UTC'});
+const parse = value => new Date(value+'T00:00:00Z');
+const date = value => dates.format(parse(value));
+const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let active = 'terms';
+let editIndex = -1;
+
+function saveState() {
+  try {
+    localStorage.setItem(storageKey, JSON.stringify({entries,iconEnabled}));
+    return true;
+  } catch {
+    dataStatus.textContent = 'Die Änderung ist vorübergehend. Sichere deine Einträge als JSON-Datei.';
+    return false;
+  }
+}
+
+function needsReminder(entry, now = new Date()) {
+  if (!entry.deadline || entry.continuedFor === entry.deadline) return false;
+  const today = Date.UTC(now.getFullYear(),now.getMonth(),now.getDate());
+  const days = (parse(entry.deadline)-today)/86400000;
+  return days >= 0 && days <= warningDays;
+}
+
+function reminderCount() {
+  return entries.filter(entry => needsReminder(entry)).length;
+}
+
+function syncBadge() {
+  if (typeof navigator.setAppBadge !== 'function') return;
+  const count = iconEnabled && window.Notification?.permission === 'granted' ? reminderCount() : 0;
+  const update = count ? navigator.setAppBadge(count) : navigator.clearAppBadge();
+  update.catch(() => {});
+}
+
+async function toggleIcon() {
+  reminderMessage = '';
+  if (iconEnabled) {
+    iconEnabled = false;
+  } else if (typeof navigator.setAppBadge !== 'function' || typeof window.Notification?.requestPermission !== 'function') {
+    reminderMessage = 'Auf iPhone und iPad öffnest du die App dafür über den Home-Bildschirm.';
+  } else {
+    try {
+      iconEnabled = await Notification.requestPermission() === 'granted';
+      if (!iconEnabled) reminderMessage = 'Erlaube Mitteilungen für diese App, damit iOS die Kennzeichnung anzeigen kann.';
+    } catch {
+      reminderMessage = 'Die Freigabe für die Kennzeichnung ist hier gerade nicht verfügbar.';
+    }
+  }
+  saveState();
+  refreshReminders();
+  view.querySelector('[data-icon]')?.focus();
+}
+
+function refreshReminders() {
+  const tab = tabs.find(tab => tab.dataset.view === active);
+  const openCards = [...view.querySelectorAll('details[open]')].map(card => card.dataset.entry);
+  activate(tab);
+  view.querySelectorAll('details').forEach(card => { card.open = openCards.includes(card.dataset.entry); });
+}
+
+function reminderBar() {
+  const count = reminderCount();
+  const label = count === 1 ? '1 offene Kündigungsfrist' : count + ' offene Kündigungsfristen';
+  return '<aside class="reminder-bar" aria-label="Kündigungshinweise"><div><strong>'+label+'</strong><p class="sub">In den nächsten '+warningDays+' Tagen</p></div><button class="secondary" type="button" data-icon aria-pressed="'+iconEnabled+'">App-Kennzeichen '+(iconEnabled?'ausschalten':'einschalten')+'</button></aside>'+
+    '<p class="sub setting-note" role="status">'+esc(reminderMessage)+'</p>';
+}
+
+function occurrence(start, offset) {
+  const [year, month, day] = start.split('-').map(Number);
+  const endOfMonth = new Date(Date.UTC(year, month + offset, 0)).getUTCDate();
+  return new Date(Date.UTC(year, month - 1 + offset, Math.min(day,endOfMonth))).toISOString().slice(0,10);
+}
+
+function todayISO(now = new Date()) {
+  return new Date(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())).toISOString().slice(0,10);
+}
+
+function nextPayment(entry, from) {
+  const start = parse(entry.next);
+  const begin = parse(from);
+  const delta = (begin.getUTCFullYear()-start.getUTCFullYear())*12 + begin.getUTCMonth()-start.getUTCMonth();
+  const offset = Math.max(0,Math.floor(delta/entry.months))*entry.months;
+  return {offset, day:occurrence(entry.next,offset)};
+}
+
+function upcomingPayment(entry, from) {
+  const payment = nextPayment(entry,from);
+  return payment.day >= from ? payment.day : occurrence(entry.next,payment.offset+entry.months);
+}
+
+function schedule(first, last) {
+  const payments = [];
+  for (const entry of entries) {
+    for (let offset = nextPayment(entry,first).offset; ; offset += entry.months) {
+      const day = occurrence(entry.next,offset);
+      if (day >= last) break;
+      if (day >= first) payments.push({day,entry});
+    }
+  }
+  return payments.sort((a,b) => a.day.localeCompare(b.day) || a.entry.name.localeCompare(b.entry.name,'de'));
+}
+
+const heading = (title, note) => '<div class="section-head"><h2>'+title+'</h2><p class="sub">'+note+'</p></div>';
+
+function renderTerms() {
+  const today = todayISO();
+  const ordered = entries.map((entry,index) => ({entry,index,day:upcomingPayment(entry,today)}))
+    .sort((a,b) => a.day.localeCompare(b.day) || a.entry.name.localeCompare(b.entry.name,'de'));
+  const title = heading('Übersicht',entries.length === 1 ? '1 Eintrag' : entries.length+' Einträge')+reminderBar();
+  if (!ordered.length) return title+'<p class="sub empty">Tippe auf „Neuer Eintrag“, um einen Vertrag oder ein Abo anzulegen.</p>';
+  return title+'<div class="cards">'+ordered.map(({entry:e,index,day}) => {
+    const continued = Boolean(e.deadline && e.continuedFor === e.deadline);
+    const soon = needsReminder(e);
+    const reminderAction = e.deadline ? '<button class="secondary" type="button" data-continue="'+index+'">'+(continued?'Hinweis wieder einschalten':'Weiterführen')+'</button>' : '';
+    return '<details class="card" data-entry="'+index+'" data-soon="'+soon+'"><summary><div class="row"><span class="card-title">'+date(day)+' · '+esc(e.name)+'</span><span class="amount">'+euro.format(e.amount)+'</span></div><div class="facts"><span>'+intervals.get(e.months)+'</span>'+(e.end?'<span>Laufzeit bis '+date(e.end)+'</span>':'')+(e.deadline?'<span class="'+(soon?'deadline':'')+'">Kündigen bis '+date(e.deadline)+'</span>':e.notice?'<span>'+esc(e.notice)+'</span>':'')+(continued?'<span class="reminder-state">Wird weitergeführt</span>':'')+'</div></summary><div class="detail"><p>Kündigungsfrist: '+esc(e.notice||'—')+'</p><div class="detail-actions"><button class="secondary" data-edit="'+index+'">Bearbeiten</button>'+reminderAction+'</div></div></details>';
+  }).join('')+'</div>';
+}
+
+function renderPayments() {
+  const first = todayISO().slice(0,7)+'-01';
+  const last = occurrence(first,12);
+  const grouped = new Map();
+  for (const payment of schedule(first,last)) {
+    const key = payment.day.slice(0,7);
+    if (!grouped.has(key)) grouped.set(key,[]);
+    grouped.get(key).push(payment);
+  }
+  const content = [...grouped].map(([month,payments]) => '<h3 class="group">'+months.format(parse(month+'-01'))+'</h3><div class="panel">'+payments.map(({day,entry}) => '<div class="row line"><span><strong>'+date(day)+'</strong> · '+esc(entry.name)+'</span><span class="amount">'+euro.format(entry.amount)+'</span></div>').join('')+'</div>').join('');
+  return heading('Zahlungsplan',months.format(parse(first))+' bis '+months.format(parse(occurrence(first,11))))+(content||'<p class="sub empty">Keine geplanten Abbuchungen in diesem Zeitraum.</p>');
+}
+
+function summarize(label) {
+  const groups = new Map();
+  for (const entry of entries) {
+    const key = label(entry);
+    const yearly = Math.round(entry.amount*100)*(12/entry.months);
+    groups.set(key,(groups.get(key)||0)+yearly);
+  }
+  return [...groups].sort((a,b) => b[1]-a[1]);
+}
+
+function costGroup(title, groups) {
+  return '<section><h3 class="group">'+title+'</h3><div class="panel">'+groups.map(([label,yearly]) => '<div class="row line"><span>'+esc(label)+'</span><span class="amount">'+euro.format(yearly/100)+'</span></div>').join('')+'</div></section>';
+}
+
+function renderCosts() {
+  if (!entries.length) return heading('Auswertung','')+'<p class="sub empty">Die Auswertung erscheint nach dem ersten Eintrag.</p>';
+  const categories = summarize(e => e.category);
+  const yearly = categories.reduce((sum,[,amount]) => sum+amount,0);
+  return heading('Auswertung','Hochrechnung aus den Zahlungsintervallen')+
+    '<div class="totals"><div class="total"><span>Pro Monat im Schnitt</span><strong>'+euro.format(yearly/1200)+'</strong></div><div class="total"><span>Gesamt pro Jahr</span><strong>'+euro.format(yearly/100)+'</strong></div></div>'+
+    '<div class="analysis-grid">'+costGroup('Nach Kategorie · pro Jahr',categories)+costGroup('Nach Zahlungsintervall · pro Jahr',summarize(e => intervals.get(e.months)))+'</div>';
+}
+
+function activate(tab) {
+  active = tab.dataset.view;
+  tabs.forEach(button => {
+    const selected = button === tab;
+    button.setAttribute('aria-selected',selected);
+    button.tabIndex = selected ? 0 : -1;
+  });
+  view.setAttribute('aria-labelledby',tab.id);
+  view.innerHTML = {terms:renderTerms,payments:renderPayments,costs:renderCosts}[active]();
+  syncBadge();
+}
+
+function openEditor(index) {
+  editIndex = index;
+  deleteButton.hidden = index < 0;
+  form.reset();
+  error.textContent = '';
+  document.querySelector('#editor-title').textContent = index < 0 ? 'Neuer Eintrag' : 'Eintrag bearbeiten';
+  if (index >= 0) {
+    for (const [key,value] of Object.entries(entries[index])) {
+      const field = form.elements.namedItem(key);
+      if (field) field.value = value;
+    }
+  }
+  editor.showModal();
+}
+
+tabs.forEach((tab,index) => {
+  tab.addEventListener('click',() => activate(tab));
+  tab.addEventListener('keydown',event => {
+    const target = {ArrowRight:(index+1)%tabs.length,ArrowLeft:(index+tabs.length-1)%tabs.length,Home:0,End:tabs.length-1}[event.key];
+    if (target === undefined) return;
+    event.preventDefault();
+    activate(tabs[target]);
+    tabs[target].focus();
+  });
+});
+document.querySelector('#add').addEventListener('click',() => openEditor(-1));
+document.querySelector('#cancel').addEventListener('click',() => editor.close());
+deleteButton.addEventListener('click',() => {
+  if (editIndex < 0 || !confirm('„'+entries[editIndex].name+'“ wirklich löschen?')) return;
+  entries.splice(editIndex,1);
+  reminderMessage = '';
+  const stored = saveState();
+  if (stored) dataStatus.textContent = 'Eintrag gelöscht.';
+  editor.close();
+  refreshReminders();
+  view.focus();
+});
+
+function validDate(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value) || value < '1900-01-01' || value > '2100-12-31') return false;
+  const parsed = parse(value);
+  return Number.isFinite(+parsed) && parsed.toISOString().slice(0,10) === value;
+}
+
+function backupEntry(value) {
+  if (!value || typeof value !== 'object') throw new Error('Ungültiger Eintrag');
+  const {name,category,amount,months,next,end,deadline,notice,continuedFor} = value;
+  const validText = (text,limit) => typeof text === 'string' && text.trim().length > 0 && text.length <= limit;
+  if (!validText(name,90) || !validText(category,50) || !Number.isFinite(amount) ||
+      amount < 0 || amount > 10000000 || Math.abs(amount*100-Math.round(amount*100)) > 0.00001 ||
+      !intervals.has(months) || !validDate(next) || !(end === '' || validDate(end)) ||
+      !(deadline === '' || validDate(deadline)) || typeof notice !== 'string' || notice.length > 50) {
+    throw new Error('Ungültiger Eintrag');
+  }
+  const result = {name:name.trim(),category:category.trim(),amount,months,next,end,deadline,notice:notice.trim()};
+  if (deadline && continuedFor === deadline) result.continuedFor = deadline;
+  return result;
+}
+
+exportButton.addEventListener('click',() => {
+  const backup = {app:'vertragsplaner',version:1,entries};
+  const url = URL.createObjectURL(new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'Vertragsplaner-Sicherung-'+todayISO()+'.json';
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url),60000);
+});
+
+document.querySelector('#import').addEventListener('click',() => backupFile.click());
+backupFile.addEventListener('change',async () => {
+  const file = backupFile.files[0];
+  backupFile.value = '';
+  if (!file) return;
+  let imported;
+  try {
+    const parsed = JSON.parse(await file.text());
+    if (parsed?.app !== 'vertragsplaner' || parsed.version !== 1 || !Array.isArray(parsed.entries)) throw new Error('Ungültige Sicherung');
+    imported = parsed.entries.map(backupEntry);
+  } catch {
+    dataStatus.textContent = 'Diese Datei ist keine gültige Vertragsplaner-Sicherung.';
+    return;
+  }
+  if (entries.length && !confirm('Diese Sicherung ersetzt alle '+entries.length+' vorhandenen Einträge. Fortfahren?')) return;
+  entries = imported;
+  reminderMessage = '';
+  if (saveState()) dataStatus.textContent = 'Sicherung wiederhergestellt ('+entries.length+' Einträge).';
+  refreshReminders();
+});
+
+view.addEventListener('click',event => {
+  const button = event.target.closest('button');
+  if (!button) return;
+  if (button.hasAttribute('data-icon')) {
+    button.disabled = true;
+    void toggleIcon();
+  }
+  if (button.hasAttribute('data-edit')) openEditor(Number(button.dataset.edit));
+  if (button.hasAttribute('data-continue')) {
+    const index = Number(button.dataset.continue);
+    const entry = entries[index];
+    reminderMessage = '';
+    if (entry.continuedFor === entry.deadline) delete entry.continuedFor;
+    else entry.continuedFor = entry.deadline;
+    saveState();
+    refreshReminders();
+    view.querySelector('[data-continue="'+index+'"]')?.focus();
+  }
+});
+form.addEventListener('submit',event => {
+  event.preventDefault();
+  const entry = Object.fromEntries(new FormData(form));
+  for (const key of ['name','category','notice']) entry[key] = entry[key].trim();
+  if (!entry.name || !entry.category) {
+    error.textContent = 'Bitte gib einen Namen und eine Kategorie ein.';
+    return;
+  }
+  entry.amount = Number(entry.amount);
+  entry.months = Number(entry.months);
+  try {
+    backupEntry(entry);
+  } catch {
+    error.textContent = 'Bitte prüfe Betrag, Zahlungsintervall und Datum.';
+    return;
+  }
+  if (editIndex < 0) entries.push(entry);
+  else {
+    if (entry.deadline && entries[editIndex].continuedFor === entry.deadline) entry.continuedFor = entry.deadline;
+    entries[editIndex] = entry;
+  }
+  reminderMessage = '';
+  if (saveState()) dataStatus.textContent = 'Eintrag gespeichert.';
+  editor.close();
+  activate(tabs.find(tab => tab.dataset.view === active));
+  view.focus();
+});
+let lastDay = new Date().toDateString();
+function checkDate() {
+  const today = new Date().toDateString();
+  if (today !== lastDay) {
+    lastDay = today;
+    refreshReminders();
+  } else syncBadge();
+}
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) checkDate();
+});
+setInterval(() => { if (!document.hidden) checkDate(); },60000);
+activate(tabs[0]);
+if ('serviceWorker' in navigator && window.isSecureContext) {
+  navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).catch(() => {});
+}
+</script>
+</body>
+</html>
