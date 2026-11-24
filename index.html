@@ -11,6 +11,9 @@
 :root{color-scheme:light;--ink:#192d27;--muted:#52665e;--green:#12604a;--line:#dce6e0;--mint:#e7f3ec;--paper:#f4f7f5;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink)}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #408b71;outline-offset:3px}h1,h2,h3,p{margin:0}.wrap{max-width:54rem;margin:auto;padding-inline:clamp(1rem,4vw,2rem)}header{background:#123329;color:white;padding:clamp(1.5rem,5vw,3rem) 0 2rem}.hero{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}h1{font-size:clamp(1.8rem,5vw,3.1rem);letter-spacing:-.045em;line-height:1.06}.primary{background:#12604a;color:white;border:0;border-radius:.65rem;padding:.7rem 1rem;font-weight:700;min-height:44px}.hero .primary{background:#bce8d2;color:#123329}nav{background:white;border-bottom:1px solid var(--line)}.tabs{display:grid;grid-template-columns:repeat(3,1fr)}.tabs button{min-height:3.6rem;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font-weight:650;padding:.5rem .2rem}.tabs button[aria-selected=true]{background:#f0f8f3;border-bottom-color:var(--green);color:#124a39}.tabs small{display:block;font-size:.8rem;font-weight:500}main{padding-block:1.7rem 3rem}.section-head{display:flex;justify-content:space-between;gap:.4rem 1rem;align-items:baseline;flex-wrap:wrap;margin-bottom:1.15rem}h2{font-size:clamp(1.3rem,4vw,1.7rem);letter-spacing:-.025em}.sub{color:var(--muted);font-size:.9rem}.cards{display:grid;gap:.75rem}.card,.panel{background:white;border:1px solid var(--line);border-radius:.85rem}.card{overflow:hidden;border-left:4px solid #87b69e}.card[data-soon=true]{border-left-color:#c37b37}.card summary{display:block;list-style:none;padding:1rem 1.1rem;cursor:pointer}.card summary::-webkit-details-marker{display:none}.card summary:hover{background:#fafcfb}.row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem}.card-title{font-size:1.08rem;font-weight:800;color:var(--green);overflow-wrap:anywhere}.amount{font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:750}.facts{display:flex;gap:.35rem .9rem;flex-wrap:wrap;margin-top:.5rem;color:var(--muted);font-size:.9rem}.deadline{color:#83501f;font-weight:700}.detail{border-top:1px solid var(--line);padding:1rem 1.1rem;display:grid;gap:.5rem}.detail .secondary{justify-self:start}.secondary{min-height:44px;padding:.55rem .75rem;border:1px solid var(--line);border-radius:.55rem;background:white;color:var(--green);font-weight:700}.group{margin:1.1rem 0 .55rem;font-size:.95rem;color:var(--green)}.panel{padding:.15rem 1rem;margin-bottom:1rem}.line{padding:.8rem 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.line:last-child{border:0}.line small{display:block;color:var(--muted)}.totals{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1.2rem}.total{padding:1rem;background:var(--mint);border-radius:.85rem}.total strong{display:block;font-size:clamp(1.2rem,4vw,1.8rem);margin-top:.25rem;color:#154e3d}.analysis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}.empty{padding:1rem}.editor{border:1px solid var(--line);border-radius:1rem;padding:1.2rem;width:min(32rem,calc(100% - 2rem));color:var(--ink)}.editor::backdrop{background:#142c24a0}.editor form{display:grid;gap:.8rem}.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));gap:.75rem}.editor label{display:grid;gap:.28rem;font-size:.9rem;font-weight:650}.editor input,.editor select{width:100%;min-height:44px;border:1px solid #a8bbb0;border-radius:.45rem;background:white;color:var(--ink);padding:.5rem}.actions{display:flex;justify-content:flex-end;gap:.5rem;flex-wrap:wrap}.error{color:#9b321d}@media(max-width:420px){.card summary{padding:.85rem .75rem}.card-title{font-size:1rem}.row{gap:.4rem}.tabs button{font-size:.9rem}}
 .reminder-bar{display:flex;align-items:center;justify-content:space-between;gap:.65rem 1rem;flex-wrap:wrap;padding:.75rem .9rem;background:#e7f3ec;border:1px solid #cddfd4;border-radius:.75rem;margin-bottom:1rem}.reminder-bar .secondary{min-height:44px}.detail-actions{display:flex;gap:.5rem;flex-wrap:wrap}.setting-note{margin:-.45rem 0 1rem}.reminder-state{color:#52665e;font-weight:650}
 .data-tools{display:flex;flex-wrap:wrap;gap:.55rem;padding:0 0 max(1.5rem,env(safe-area-inset-bottom))}.data-tools p{flex-basis:100%}.danger{color:#96391f}.editor{max-height:calc(100dvh - 2rem)}
+.category-list{display:grid;gap:.5rem;max-height:35vh;overflow:auto;margin:.75rem 0}.category-row{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;padding:.45rem 0;border-bottom:1px solid var(--line)}.category-row span{flex:1 1 7rem;overflow-wrap:anywhere}.category-controls{display:flex;gap:.4rem;flex-wrap:wrap;margin:.75rem 0}.category-controls input{flex:1 1 10rem;width:auto}
+[hidden]{display:none!important}
+.monthly-accounts{padding:0 .9rem;background:#ecf4f1}.payment-account{display:block;color:var(--muted);font-size:.85rem;margin-top:.15rem}
 </style>
 </head>
 <body>
@@ -21,6 +24,8 @@
 <button role="tab" id="tab-costs" aria-controls="view" aria-selected="false" tabindex="-1" data-view="costs">Auswertung<small>Kosten</small></button>
 </div></nav>
 <div class="wrap"><main id="view" role="tabpanel" aria-labelledby="tab-terms" tabindex="0"></main><footer class="data-tools">
+<button class="secondary" data-manage="account" type="button">Konten verwalten</button>
+<button class="secondary" data-manage="category" type="button">Kategorien verwalten</button>
 <button class="secondary" id="export" type="button">JSON-Sicherung erstellen</button>
 <button class="secondary" id="import" type="button">Sicherung wiederherstellen</button>
 <input type="file" id="backup-file" accept=".json,application/json" hidden>
@@ -30,7 +35,8 @@
 <h2 id="editor-title">Neuer Eintrag</h2>
 <div class="fields">
 <label>Name<input name="name" maxlength="90" required></label>
-<label>Kategorie<input name="category" maxlength="50" required></label>
+<div><label>Kategorie<select name="category" required></select></label><button class="secondary" data-manage="category" type="button">Kategorien verwalten</button></div>
+<div><label>Bank / Konto<select name="account"></select></label><button class="secondary" data-manage="account" type="button">Konten verwalten</button></div>
 <label>Betrag in Euro<input name="amount" type="number" min="0" max="10000000" step="0.01" required></label>
 <label>Zahlungsintervall<select name="months"><option value="1">Monatlich</option><option value="3">Vierteljährlich</option><option value="6">Halbjährlich</option><option value="12">Jährlich</option></select></label>
 <label>Erste oder nächste Abbuchung<input name="next" type="date" min="1900-01-01" max="2100-12-31" required></label>
@@ -41,6 +47,27 @@
 <p class="sub">Das Datum unter „Kündigen bis“ steuert den Hinweis. Bei einer Verlängerung kannst du dort die neue Frist eintragen.</p><p class="error" role="alert" id="form-error"></p>
 <div class="actions"><button type="button" class="secondary danger" id="delete" hidden>Löschen</button><button type="button" class="secondary" id="cancel">Abbrechen</button><button class="primary">Speichern</button></div>
 </form></dialog>
+<dialog class="editor" id="category-manager" aria-labelledby="category-title">
+<h2 id="category-title">Kategorien verwalten</h2>
+<form id="add-category">
+<div class="category-controls">
+<input name="name" aria-label="Name der neuen Kategorie" maxlength="50" placeholder="Neue Kategorie" required>
+<button class="primary">Hinzufügen</button>
+</div>
+</form>
+<p id="category-status" class="sub" role="status"></p>
+<div id="category-list" class="category-list"></div>
+<div class="actions"><button id="close-categories" class="secondary" type="button">Fertig</button></div>
+</dialog>
+<dialog class="editor" id="category-edit" aria-labelledby="category-edit-title">
+<form id="category-edit-form">
+<h2 id="category-edit-title"></h2>
+<label id="rename-field">Neuer Name<input name="name" maxlength="50"></label>
+<label id="replace-field"><span id="replacement-label">Ersatzkategorie</span><select name="replacement"></select></label>
+<p id="category-edit-status" class="error" role="status"></p>
+<div class="actions"><button class="secondary" type="button" id="cancel-category-edit">Abbrechen</button><button class="primary" id="confirm-category-edit"></button></div>
+</form>
+</dialog>
 <script>
 const intervals = new Map([[1,'Monatlich'],[3,'Vierteljährlich'],[6,'Halbjährlich'],[12,'Jährlich']]);
 const scope = new URL('./',location.href).pathname;
@@ -53,6 +80,8 @@ try {
   saved = null;
 }
 let entries = Array.isArray(saved?.entries) ? saved.entries : [];
+let categories = mergeNames(saved?.categories,entries,'category');
+let accounts = mergeNames(saved?.accounts,entries,'account');
 let iconEnabled = saved?.iconEnabled === true;
 let reminderMessage = '';
 const view = document.querySelector('#view');
@@ -63,6 +92,19 @@ const error = document.querySelector('#form-error');
 const deleteButton = document.querySelector('#delete');
 const backupFile = document.querySelector('#backup-file');
 const dataStatus = document.querySelector('#data-status');
+const categoryManager = document.querySelector('#category-manager');
+const categoryList = document.querySelector('#category-list');
+const categoryStatus = document.querySelector('#category-status');
+const lists = {
+  category: {names:() => categories, singular:'Kategorie', plural:'Kategorien', replacement:'Ersatzkategorie', first:'Lege deine erste Kategorie an.'},
+  account: {names:() => accounts, singular:'Konto', plural:'Konten', replacement:'Ersatzkonto', first:'Lege dein erstes Konto an.'}
+};
+let managedField = 'category';
+const addCategoryForm = document.querySelector('#add-category');
+const categoryEdit = document.querySelector('#category-edit');
+const categoryEditForm = document.querySelector('#category-edit-form');
+const categoryEditStatus = document.querySelector('#category-edit-status');
+let categoryChange;
 const exportButton = document.querySelector('#export');
 const euro = new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR'});
 const dates = new Intl.DateTimeFormat('de-DE',{day:'2-digit',month:'2-digit',year:'numeric',timeZone:'UTC'});
@@ -75,7 +117,7 @@ let editIndex = -1;
 
 function saveState() {
   try {
-    localStorage.setItem(storageKey, JSON.stringify({entries,iconEnabled}));
+    localStorage.setItem(storageKey, JSON.stringify({entries,categories,accounts,iconEnabled}));
     return true;
   } catch {
     dataStatus.textContent = 'Die Änderung ist vorübergehend. Sichere deine Einträge als JSON-Datei.';
@@ -181,7 +223,7 @@ function renderTerms() {
     const continued = Boolean(e.deadline && e.continuedFor === e.deadline);
     const soon = needsReminder(e);
     const reminderAction = e.deadline ? '<button class="secondary" type="button" data-continue="'+index+'">'+(continued?'Hinweis wieder einschalten':'Weiterführen')+'</button>' : '';
-    return '<details class="card" data-entry="'+index+'" data-soon="'+soon+'"><summary><div class="row"><span class="card-title">'+date(day)+' · '+esc(e.name)+'</span><span class="amount">'+euro.format(e.amount)+'</span></div><div class="facts"><span>'+intervals.get(e.months)+'</span>'+(e.end?'<span>Laufzeit bis '+date(e.end)+'</span>':'')+(e.deadline?'<span class="'+(soon?'deadline':'')+'">Kündigen bis '+date(e.deadline)+'</span>':e.notice?'<span>'+esc(e.notice)+'</span>':'')+(continued?'<span class="reminder-state">Wird weitergeführt</span>':'')+'</div></summary><div class="detail"><p>Kündigungsfrist: '+esc(e.notice||'—')+'</p><div class="detail-actions"><button class="secondary" data-edit="'+index+'">Bearbeiten</button>'+reminderAction+'</div></div></details>';
+    return '<details class="card" data-entry="'+index+'" data-soon="'+soon+'"><summary><div class="row"><span class="card-title">'+date(day)+' · '+esc(e.name)+'</span><span class="amount">'+euro.format(e.amount)+'</span></div><div class="facts"><span>'+intervals.get(e.months)+'</span><span>Konto: '+esc(e.account||'Ohne Konto')+'</span>'+(e.end?'<span>Laufzeit bis '+date(e.end)+'</span>':'')+(e.deadline?'<span class="'+(soon?'deadline':'')+'">Kündigen bis '+date(e.deadline)+'</span>':e.notice?'<span>'+esc(e.notice)+'</span>':'')+(continued?'<span class="reminder-state">Wird weitergeführt</span>':'')+'</div></summary><div class="detail"><p>Kündigungsfrist: '+esc(e.notice||'—')+'</p><div class="detail-actions"><button class="secondary" data-edit="'+index+'">Bearbeiten</button>'+reminderAction+'</div></div></details>';
   }).join('')+'</div>';
 }
 
@@ -194,8 +236,32 @@ function renderPayments() {
     if (!grouped.has(key)) grouped.set(key,[]);
     grouped.get(key).push(payment);
   }
-  const content = [...grouped].map(([month,payments]) => '<h3 class="group">'+months.format(parse(month+'-01'))+'</h3><div class="panel">'+payments.map(({day,entry}) => '<div class="row line"><span><strong>'+date(day)+'</strong> · '+esc(entry.name)+'</span><span class="amount">'+euro.format(entry.amount)+'</span></div>').join('')+'</div>').join('');
+  const content = [...grouped].map(([month,payments]) => {
+    const lines = payments.map(({day,entry}) =>
+      '<div class="row line"><span><strong>'+date(day)+'</strong> · '+esc(entry.name)+
+      '<span class="payment-account">Konto: '+esc(entry.account||'Ohne Konto')+'</span></span>'+
+      '<span class="amount">'+euro.format(entry.amount)+'</span></div>'
+    ).join('');
+    return '<h3 class="group">'+months.format(parse(month+'-01'))+'</h3>'+
+      monthAccountSummary(payments)+'<div class="panel">'+lines+'</div>';
+  }).join('');
   return heading('Zahlungsplan',months.format(parse(first))+' bis '+months.format(parse(occurrence(first,11))))+(content||'<p class="sub empty">Keine geplanten Abbuchungen in diesem Zeitraum.</p>');
+}
+
+function monthAccountSummary(payments) {
+  const totals = new Map();
+  let total = 0;
+  for (const {entry} of payments) {
+    const account = entry.account || '';
+    const cents = Math.round(entry.amount*100);
+    totals.set(account,(totals.get(account)||0)+cents);
+    total += cents;
+  }
+  const rows = [...totals].sort(([a],[b]) => Number(!a)-Number(!b) || a.localeCompare(b,'de'))
+    .map(([account,cents]) => '<div class="row line"><span>'+esc(account||'Ohne Konto')+
+      '</span><span class="amount">'+euro.format(cents/100)+'</span></div>').join('');
+  return '<div class="panel monthly-accounts"><div class="row line"><strong>Monatssumme</strong>'+
+    '<strong class="amount">'+euro.format(total/100)+'</strong></div>'+rows+'</div>';
 }
 
 function summarize(label) {
@@ -237,6 +303,7 @@ function openEditor(index) {
   editIndex = index;
   deleteButton.hidden = index < 0;
   form.reset();
+  for (const field of Object.keys(lists)) fillChoices(field,entries[index]?.[field]);
   error.textContent = '';
   document.querySelector('#editor-title').textContent = index < 0 ? 'Neuer Eintrag' : 'Eintrag bearbeiten';
   if (index >= 0) {
@@ -279,21 +346,21 @@ function validDate(value) {
 
 function backupEntry(value) {
   if (!value || typeof value !== 'object') throw new Error('Ungültiger Eintrag');
-  const {name,category,amount,months,next,end,deadline,notice,continuedFor} = value;
+  const {name,category,amount,months,next,end,deadline,notice,continuedFor,account = ''} = value;
   const validText = (text,limit) => typeof text === 'string' && text.trim().length > 0 && text.length <= limit;
-  if (!validText(name,90) || !validText(category,50) || !Number.isFinite(amount) ||
+  if (!validText(name,90) || !validText(category,50) || !(account === '' || validText(account,50)) || !Number.isFinite(amount) ||
       amount < 0 || amount > 10000000 || Math.abs(amount*100-Math.round(amount*100)) > 0.00001 ||
       !intervals.has(months) || !validDate(next) || !(end === '' || validDate(end)) ||
       !(deadline === '' || validDate(deadline)) || typeof notice !== 'string' || notice.length > 50) {
     throw new Error('Ungültiger Eintrag');
   }
-  const result = {name:name.trim(),category:category.trim(),amount,months,next,end,deadline,notice:notice.trim()};
+  const result = {name:name.trim(),category:category.trim(),account:account.trim(),amount,months,next,end,deadline,notice:notice.trim()};
   if (deadline && continuedFor === deadline) result.continuedFor = deadline;
   return result;
 }
 
 exportButton.addEventListener('click',() => {
-  const backup = {app:'vertragsplaner',version:1,entries};
+  const backup = {app:'vertragsplaner',version:2,entries,categories,accounts};
   const url = URL.createObjectURL(new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}));
   const link = document.createElement('a');
   link.href = url;
@@ -310,19 +377,146 @@ backupFile.addEventListener('change',async () => {
   backupFile.value = '';
   if (!file) return;
   let imported;
+  let importedCategories;
+  let importedAccounts;
   try {
     const parsed = JSON.parse(await file.text());
-    if (parsed?.app !== 'vertragsplaner' || parsed.version !== 1 || !Array.isArray(parsed.entries)) throw new Error('Ungültige Sicherung');
+    if (parsed?.app !== 'vertragsplaner' || ![1,2].includes(parsed.version) || !Array.isArray(parsed.entries)) throw new Error('Ungültige Sicherung');
     imported = parsed.entries.map(backupEntry);
+    importedCategories = mergeNames(parsed.categories,imported,'category');
+    importedAccounts = mergeNames(parsed.accounts,imported,'account');
   } catch {
     dataStatus.textContent = 'Diese Datei ist keine gültige Vertragsplaner-Sicherung.';
     return;
   }
-  if (entries.length && !confirm('Diese Sicherung ersetzt alle '+entries.length+' vorhandenen Einträge. Fortfahren?')) return;
+  if ((entries.length || categories.length || accounts.length) && !confirm('Diese Sicherung ersetzt die vorhandenen Einträge, Kategorien und Konten. Fortfahren?')) return;
   entries = imported;
+  categories = importedCategories;
+  accounts = importedAccounts;
   reminderMessage = '';
   if (saveState()) dataStatus.textContent = 'Sicherung wiederhergestellt ('+entries.length+' Einträge).';
   refreshReminders();
+});
+
+function mergeNames(stored, records, field) {
+  const names = Array.isArray(stored) ? stored.filter(name => typeof name === 'string' && name.trim() && name.length <= 50) : [];
+  return [...new Set([...names,...records.map(entry => entry[field]).filter(Boolean)])];
+}
+
+function option(name) {
+  return '<option value="'+esc(name)+'">'+esc(name)+'</option>';
+}
+
+function fillChoices(field, selected) {
+  const select = form.elements.namedItem(field);
+  const names = lists[field].names();
+  const placeholder = field === 'category' ? '<option value="" disabled>Kategorie auswählen</option>' : '<option value="">Ohne Konto</option>';
+  select.innerHTML = placeholder + names.map(option).join('');
+  select.value = names.includes(selected) ? selected : '';
+}
+
+function renderNames(message = '') {
+  const list = lists[managedField];
+  categoryStatus.textContent = message;
+  categoryList.innerHTML = list.names().map((name,index) =>
+    '<div class="category-row"><span>'+esc(name)+'</span>'+
+    '<button class="secondary" type="button" data-rename="'+index+'">Umbenennen</button>'+
+    '<button class="secondary danger" type="button" data-remove="'+index+'">Löschen</button></div>'
+  ).join('') || '<p class="sub">'+list.first+'</p>';
+}
+
+function openNames(field) {
+  managedField = field;
+  const list = lists[field];
+  document.querySelector('#category-title').textContent = list.plural+' verwalten';
+  const input = addCategoryForm.elements.namedItem('name');
+  input.placeholder = field === 'category' ? 'Neue Kategorie' : 'Neues Konto';
+  input.setAttribute('aria-label',input.placeholder);
+  addCategoryForm.reset();
+  renderNames();
+  categoryManager.showModal();
+}
+
+function nameExists(name,current) {
+  return lists[managedField].names().some(existing => existing !== current &&
+    existing.toLocaleLowerCase('de') === name.toLocaleLowerCase('de'));
+}
+
+function saveNames(selected,message) {
+  const stored = saveState();
+  fillChoices(managedField,selected);
+  renderNames(stored ? message : 'Die Änderung konnte nur vorübergehend gespeichert werden.');
+  refreshReminders();
+}
+
+document.querySelectorAll('[data-manage]').forEach(button =>
+  button.addEventListener('click',() => openNames(button.dataset.manage)));
+document.querySelector('#close-categories').addEventListener('click',() => categoryManager.close());
+document.querySelector('#cancel-category-edit').addEventListener('click',() => categoryEdit.close());
+
+addCategoryForm.addEventListener('submit',event => {
+  event.preventDefault();
+  const list = lists[managedField];
+  const name = addCategoryForm.elements.namedItem('name').value.trim();
+  if (!name || nameExists(name)) {
+    categoryStatus.textContent = name ? 'Diesen Namen gibt es bereits.' : 'Bitte gib einen Namen ein.';
+    return;
+  }
+  list.names().push(name);
+  saveNames(form.elements.namedItem(managedField).value || name,list.singular+' hinzugefügt.');
+  addCategoryForm.reset();
+});
+
+categoryList.addEventListener('click',event => {
+  const button = event.target.closest('button');
+  if (!button) return;
+  const list = lists[managedField];
+  const names = list.names();
+  const rename = button.hasAttribute('data-rename');
+  const index = Number(rename ? button.dataset.rename : button.dataset.remove);
+  const name = names[index];
+  const used = entries.some(entry => entry[managedField] === name);
+  const alternatives = names.filter(existing => existing !== name);
+  if (!rename && used && !alternatives.length) {
+    categoryStatus.textContent = 'Lege zuerst '+(managedField === 'category' ? 'eine Ersatzkategorie' : 'ein Ersatzkonto')+' für die zugeordneten Verträge an.';
+    return;
+  }
+  categoryChange = {rename,index,name,used};
+  categoryEditStatus.textContent = '';
+  const nameField = categoryEditForm.elements.namedItem('name');
+  const replacementField = categoryEditForm.elements.namedItem('replacement');
+  nameField.parentElement.hidden = !rename;
+  nameField.required = rename;
+  nameField.value = name;
+  replacementField.parentElement.hidden = rename || !used;
+  replacementField.required = !rename && used;
+  document.querySelector('#replacement-label').textContent = list.replacement;
+  replacementField.innerHTML = '<option value="" disabled selected>'+list.replacement+' auswählen</option>'+alternatives.map(option).join('');
+  document.querySelector('#category-edit-title').textContent = rename ? list.singular+' umbenennen' : '„'+name+'“ löschen?';
+  document.querySelector('#confirm-category-edit').textContent = rename ? 'Speichern' : 'Löschen';
+  if (!rename && used) categoryEditStatus.textContent = 'Zugeordnete Verträge erhalten die gewählte Zuordnung.';
+  categoryEdit.showModal();
+});
+
+categoryEditForm.addEventListener('submit',event => {
+  event.preventDefault();
+  const {rename,index,name,used} = categoryChange;
+  const list = lists[managedField];
+  const names = list.names();
+  const newName = categoryEditForm.elements.namedItem(rename ? 'name' : 'replacement').value.trim();
+  if (rename && (!newName || nameExists(newName,name))) {
+    categoryEditStatus.textContent = 'Bitte gib einen eindeutigen Namen ein.';
+    return;
+  }
+  if (!rename && used && (!newName || !names.includes(newName) || newName === name)) return;
+  for (const entry of entries) {
+    if (entry[managedField] === name) entry[managedField] = newName;
+  }
+  if (rename) names[index] = newName;
+  else names.splice(index,1);
+  const current = form.elements.namedItem(managedField).value;
+  categoryEdit.close();
+  saveNames(current === name ? newName : current,list.singular+(rename ? ' umbenannt.' : ' gelöscht.'));
 });
 
 view.addEventListener('click',event => {
@@ -347,9 +541,13 @@ view.addEventListener('click',event => {
 form.addEventListener('submit',event => {
   event.preventDefault();
   const entry = Object.fromEntries(new FormData(form));
-  for (const key of ['name','category','notice']) entry[key] = entry[key].trim();
-  if (!entry.name || !entry.category) {
-    error.textContent = 'Bitte gib einen Namen und eine Kategorie ein.';
+  for (const key of ['name','category','account','notice']) entry[key] = entry[key].trim();
+  if (!entry.name || !categories.includes(entry.category)) {
+    error.textContent = 'Bitte gib einen Namen ein und wähle eine Kategorie aus.';
+    return;
+  }
+  if (entry.account && !accounts.includes(entry.account)) {
+    error.textContent = 'Bitte wähle ein vorhandenes Konto aus.';
     return;
   }
   entry.amount = Number(entry.amount);
